@@ -1,4 +1,4 @@
-# modules/openssh/manifests/classes/server.pp
+# modules/openssh/manifests/init.pp
 #
 # Synopsis:
 #       Configures a host as a OpenSSH server.
