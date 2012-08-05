@@ -54,7 +54,6 @@ class openssh::server {
         hasrestart      => true,
         hasstatus       => true,
         require         => [
-            Exec['open-sshd-tcp-port'],
             Package['openssh-server'],
         ],
         subscribe       => [
