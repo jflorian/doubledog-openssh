@@ -21,12 +21,6 @@ class openssh::server {
         ensure  => installed,
     }
 
-    if $operatingsystem == 'Fedora' and $operatingsystemrelease >= 14 {
-        $sshd_config = 'sshd_config.f14+'
-    } else {
-        $sshd_config = 'sshd_config'
-    }
-
     file { '/etc/ssh/sshd_config':
         group   => 'root',
         mode    => '0600',
@@ -36,9 +30,9 @@ class openssh::server {
         selrole => 'object_r',
         seltype => 'etc_t',
         source  => [
-            "puppet:///private-host/openssh/${sshd_config}",
-            "puppet:///private-domain/openssh/${sshd_config}",
-            "puppet:///modules/openssh/${sshd_config}",
+            "puppet:///private-host/openssh/sshd_config",
+            "puppet:///private-domain/openssh/sshd_config",
+            "puppet:///modules/openssh/sshd_config",
         ],
     }
 
