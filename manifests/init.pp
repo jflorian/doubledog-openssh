@@ -6,16 +6,10 @@
 # Parameters:
 #       Name__________  Default_______  Description___________________________
 #
-#       NONE
-#
-# Requires:
-#       NONE
-#
-# Example usage:
-#
-#       include openssh::server
+#       config                          sshd_config as a string.
 
-class openssh::server {
+
+class openssh::server ($config) {
 
     package { 'openssh-server':
         ensure  => installed,
@@ -29,11 +23,7 @@ class openssh::server {
         seluser => 'system_u',
         selrole => 'object_r',
         seltype => 'etc_t',
-        source  => [
-            "puppet:///private-host/openssh/sshd_config",
-            "puppet:///private-domain/openssh/sshd_config",
-            "puppet:///modules/openssh/sshd_config",
-        ],
+        content => "${config}",
     }
 
     lokkit::tcp_port { 'sshd':
