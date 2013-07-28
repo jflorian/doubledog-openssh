@@ -1,25 +1,25 @@
-# modules/MODULE_NAME/manifests/params.pp
+# modules/openssh/manifests/params.pp
 #
 # Synopsis:
-#       Parameters for the MODULE_NAME puppet module.
+#       Parameters for the openssh puppet module.
 
 
-class MODULE_NAME::params {
+class openssh::params {
 
     case $::operatingsystem {
         Fedora: {
 
             $services = [
-                'SERVICE_NAME',
+                'sshd',
             ]
             $packages = [
-                'PACKAGE_NAME',
+                'openssh-server',
             ]
 
         }
 
         default: {
-            fail ("The MODULE_NAME module is not yet supported on ${operatingsystem}.")
+            fail ("The openssh module is not yet supported on ${operatingsystem}.")
         }
 
     }
