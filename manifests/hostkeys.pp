@@ -32,22 +32,38 @@ class openssh::hostkeys ($aliases=undef) {
     file { '/etc/ssh/ssh_known_hosts':
     }
 
+    $ipaddresses = ipaddresses()
     if $aliases == undef {
-        $host_aliases = [$hostname, $ipaddress]
+        $host_aliases = flatten([$::fqdn, $::hostname, $ipaddresses])
     } else {
-        $host_aliases = [$hostname, $aliases, $ipaddress]
+        $host_aliases = flatten([$::fqdn, $::hostname, $aliases, $ipaddresses])
     }
 
-    # Export hostkeys from all hosts.
-    @@sshkey { $fqdn:
-        ensure          => present,
+    # Export all types of hostkeys from all hosts.
+    @@sshkey { "${::fqdn}_dsa":
         host_aliases    => $host_aliases,
-        type            => 'ssh-rsa',
+        type            => 'dsa',
+        key             => $sshrsakey,
+        require         => Class['openssh::server'],
+    }
+
+    @@sshkey { "${::fqdn}_rsa":
+        host_aliases    => $host_aliases,
+        type            => 'rsa',
+        key             => $sshrsakey,
+        require         => Class['openssh::server'],
+    }
+
+    @@sshkey { "${::fqdn}_ecdsa":
+        host_aliases    => $host_aliases,
+        type            => 'ecdsa-sha2-nistp256',
         key             => $sshrsakey,
         require         => Class['openssh::server'],
     }
 
     # Import hostkeys to all hosts.
-    Sshkey <<| |>>
+    # Disabled due to bug:
+    #   http://projects.puppetlabs.com/issues/17798
+    #Sshkey <<| |>>
 
 }
