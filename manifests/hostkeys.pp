@@ -64,6 +64,6 @@ class openssh::hostkeys ($aliases=undef) {
     # Import hostkeys to all hosts.
     # Disabled due to bug:
     #   http://projects.puppetlabs.com/issues/17798
-    #Sshkey <<| |>>
+    Sshkey <<| |>>
 
 }
