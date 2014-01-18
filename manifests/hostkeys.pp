@@ -1,4 +1,4 @@
-# modules/openssh/manifests/init.pp
+# modules/openssh/manifests/hostkeys.pp
 #
 # Synopsis:
 #       Configures known host keys for the OpenSSH server.
