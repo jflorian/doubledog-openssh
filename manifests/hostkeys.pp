@@ -32,38 +32,44 @@ class openssh::hostkeys ($aliases=undef) {
     file { '/etc/ssh/ssh_known_hosts':
     }
 
-    $ipaddresses = ipaddresses()
+    # This function doesn't work across all hosts for some reason.
+    #$ipaddresses = ipaddresses()
+    # So, nice as it sounds, for now ...
+    $ipaddresses = $::ipaddress
     if $aliases == undef {
-        $host_aliases = flatten([$::fqdn, $::hostname, $ipaddresses])
+        $host_aliases = flatten([$::hostname, $ipaddresses])
     } else {
-        $host_aliases = flatten([$::fqdn, $::hostname, $aliases, $ipaddresses])
+        $host_aliases = flatten([$::hostname, $aliases, $ipaddresses])
+    }
+
+    Sshkey {
+        host_aliases    => $host_aliases,
+        require         => Class['openssh::server'],
     }
 
     # Export all types of hostkeys from all hosts.
-    @@sshkey { "${::fqdn}_dsa":
-        host_aliases    => $host_aliases,
-        type            => 'dsa',
-        key             => $sshrsakey,
-        require         => Class['openssh::server'],
+    if $sshdsakey {
+        @@sshkey { "${::fqdn}_dsa":
+            type    => 'dsa',
+            key     => $sshdsakey,
+        }
     }
 
-    @@sshkey { "${::fqdn}_rsa":
-        host_aliases    => $host_aliases,
-        type            => 'rsa',
-        key             => $sshrsakey,
-        require         => Class['openssh::server'],
+    if $sshrsakey {
+        @@sshkey { "${::fqdn}_rsa":
+            type    => 'rsa',
+            key     => $sshrsakey,
+        }
     }
 
-    @@sshkey { "${::fqdn}_ecdsa":
-        host_aliases    => $host_aliases,
-        type            => 'ecdsa-sha2-nistp256',
-        key             => $sshrsakey,
-        require         => Class['openssh::server'],
+    if $sshecdsakey {
+        @@sshkey { "${::fqdn}_ecdsa":
+            type    => 'ecdsa-sha2-nistp256',
+            key     => $sshecdsakey,
+        }
     }
 
     # Import hostkeys to all hosts.
-    # Disabled due to bug:
-    #   http://projects.puppetlabs.com/issues/17798
     Sshkey <<| |>>
 
 }
