@@ -1,15 +1,29 @@
-# modules/openssh/manifests/init.pp
+# modules/openssh/manifests/server.pp
 #
-# Synopsis:
-#       Configures a host as a OpenSSH server.
+# == Class: openssh::server
 #
-# Parameters:
-#       Name__________  Notes_  Description___________________________
+# Configures a host as an OpenSSH server.
 #
-#       config                  sshd_config as a string.
+# === Parameters
+#
+# [*content*]
+#   Literal content for the openssh server configuration file.  One and only
+#   one of "content" or "source" must be given.
+#
+# [*source*]
+#   URI of the openssh server configuration file content.  One and only one of
+#   "content" or "source" must be given.
+#
+# === Authors
+#
+#   John Florian <john.florian@dart.biz>
+#   John Florian <jflorian@doubledog.org>
 
 
-class openssh::server ($config=undef) {
+class openssh::server (
+        $content=undef,
+        $source=undef,
+    ) {
 
     include 'openssh::params'
 
@@ -31,7 +45,8 @@ class openssh::server ($config=undef) {
     }
 
     file { '/etc/ssh/sshd_config':
-        content => $config,
+        content     => $content,
+        source      => $source,
     }
 
     iptables::tcp_port {
