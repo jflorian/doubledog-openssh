@@ -1,22 +1,26 @@
 # modules/openssh/manifests/hostkeys.pp
 #
-# Synopsis:
-#       Configures known host keys for the OpenSSH server.
+# == Class: openssh::hostkeys
 #
-# Parameters:
-#       Name__________  Notes_  Description___________________________
+# Configures known host keys for the OpenSSH server.
 #
-#       aliases         1       Other valid identities for this host.
+# === Parameters
 #
-# Notes:
+# [*aliases*]
+#   A list of other valid identities for this host.  By default, the hostkey
+#   of each type will be associated with the short hostname (e.g., 'burmese'),
+#   the fully-qualified hostname (e.g., 'burmese.python.org') and its primary
+#   (as determined by facter) IP address.
 #
-#       1.  By default, the hostkey will be associated with the short
-#       hostname (e.g., 'burmese'), the fully-qualified hostname (e.g.,
-#       'burmese.python.org') and its primary (as determiend by facter) IP
-#       address.
+# === Authors
+#
+#   John Florian <jflorian@doubledog.org>
+#   John Florian <john.florian@dart.biz>
 
 
-class openssh::hostkeys ($aliases=undef) {
+class openssh::hostkeys (
+        $aliases=undef,
+    ) {
 
     File {
         owner   => 'root',
