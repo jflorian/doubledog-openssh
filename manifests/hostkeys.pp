@@ -48,24 +48,24 @@ class openssh::hostkeys ($aliases=undef) {
     }
 
     # Export all types of hostkeys from all hosts.
-    if $sshdsakey {
+    if $::sshdsakey {
         @@sshkey { "${::fqdn}_dsa":
             type    => 'dsa',
-            key     => $sshdsakey,
+            key     => $::sshdsakey,
         }
     }
 
-    if $sshrsakey {
+    if $::sshrsakey {
         @@sshkey { "${::fqdn}_rsa":
             type    => 'rsa',
-            key     => $sshrsakey,
+            key     => $::sshrsakey,
         }
     }
 
-    if $sshecdsakey {
+    if $::sshecdsakey {
         @@sshkey { "${::fqdn}_ecdsa":
             type    => 'ecdsa-sha2-nistp256',
-            key     => $sshecdsakey,
+            key     => $::sshecdsakey,
         }
     }
 

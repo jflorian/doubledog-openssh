@@ -19,7 +19,7 @@ class openssh::params {
         }
 
         default: {
-            fail ("The openssh module is not yet supported on ${operatingsystem}.")
+            fail ("The openssh module is not yet supported on ${::operatingsystem}.")
         }
 
     }

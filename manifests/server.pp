@@ -9,7 +9,7 @@
 #       config                  sshd_config as a string.
 
 
-class openssh::server ($config) {
+class openssh::server ($config=undef) {
 
     include 'openssh::params'
 
@@ -31,7 +31,7 @@ class openssh::server ($config) {
     }
 
     file { '/etc/ssh/sshd_config':
-        content => "${config}",
+        content => $config,
     }
 
     iptables::tcp_port {
@@ -39,8 +39,8 @@ class openssh::server ($config) {
     }
 
     service { $openssh::params::services:
-        enable      => true,
         ensure      => running,
+        enable      => true,
         hasrestart  => true,
         hasstatus   => true,
     }
