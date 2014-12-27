@@ -54,22 +54,22 @@ class openssh::hostkeys (
     # Export all types of hostkeys from all hosts.
     if $::sshdsakey {
         @@sshkey { "${::fqdn}_dsa":
-            type    => 'dsa',
-            key     => $::sshdsakey,
+            type => 'dsa',
+            key  => $::sshdsakey,
         }
     }
 
     if $::sshrsakey {
         @@sshkey { "${::fqdn}_rsa":
-            type    => 'rsa',
-            key     => $::sshrsakey,
+            type => 'rsa',
+            key  => $::sshrsakey,
         }
     }
 
     if $::sshecdsakey {
         @@sshkey { "${::fqdn}_ecdsa":
-            type    => 'ecdsa-sha2-nistp256',
-            key     => $::sshecdsakey,
+            type => 'ecdsa-sha2-nistp256',
+            key  => $::sshecdsakey,
         }
     }
 

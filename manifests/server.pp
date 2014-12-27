@@ -33,8 +33,8 @@ class openssh::server (
     include 'openssh::params'
 
     package { $openssh::params::packages:
-        ensure  => installed,
-        notify  => Service[$openssh::params::services],
+        ensure => installed,
+        notify => Service[$openssh::params::services],
     }
 
     File {
@@ -50,24 +50,24 @@ class openssh::server (
     }
 
     file { '/etc/ssh/sshd_config':
-        content     => $content,
-        source      => $source,
+        content => $content,
+        source  => $source,
     }
 
     if $manage_firewall {
         firewall { '200 accept SSH packets':
-            dport       => '22',
-            proto       => 'tcp',
-            state       => 'NEW',
-            action      => 'accept',
+            dport  => '22',
+            proto  => 'tcp',
+            state  => 'NEW',
+            action => 'accept',
         }
     }
 
     service { $openssh::params::services:
-        ensure      => running,
-        enable      => true,
-        hasrestart  => true,
-        hasstatus   => true,
+        ensure     => running,
+        enable     => true,
+        hasrestart => true,
+        hasstatus  => true,
     }
 
 }
