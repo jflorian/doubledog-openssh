@@ -14,6 +14,10 @@
 #   URI of the openssh server configuration file content.  One and only one of
 #   "content" or "source" must be given.
 #
+# [*manage_firewall*]
+#   If true, open the SSH port on the firewall.  Otherwise the firewall is
+#   left unaffected.  Defaults to true.
+#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -23,6 +27,7 @@
 class openssh::server (
         $content=undef,
         $source=undef,
+        $manage_firewall=true,
     ) {
 
     include 'openssh::params'
@@ -49,8 +54,13 @@ class openssh::server (
         source      => $source,
     }
 
-    iptables::tcp_port {
-        'sshd': port => '22';
+    if $manage_firewall {
+        firewall { '200 accept SSH packets':
+            dport       => '22',
+            proto       => 'tcp',
+            state       => 'NEW',
+            action      => 'accept',
+        }
     }
 
     service { $openssh::params::services:
