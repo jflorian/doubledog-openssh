@@ -49,15 +49,12 @@ define openssh::hostkey (
         $location='/etc/ssh',
     ) {
 
-    File {
+    file { "${location}/${name}.pub":
         ensure  => $ensure,
         owner   => 'root',
         seluser => 'system_u',
         selrole => 'object_r',
         seltype => 'sshd_key_t',
-    }
-
-    file { "${location}/${name}.pub":
         group   => 'root',
         mode    => '0644',
         content => $public_content,
@@ -65,6 +62,11 @@ define openssh::hostkey (
     }
 
     file { "${location}/${name}":
+        ensure  => $ensure,
+        owner   => 'root',
+        seluser => 'system_u',
+        selrole => 'object_r',
+        seltype => 'sshd_key_t',
         group   => 'ssh_keys',
         mode    => '0640',
         content => $private_content,
