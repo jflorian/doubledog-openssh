@@ -8,12 +8,17 @@
 #
 #   John Florian <jflorian@doubledog.org>
 #   John Florian <john.florian@dart.biz>
+#
+# === Copyright
+#
+# Copyright 2012-2015 John Florian
 
 
 class openssh::params {
 
     case $::operatingsystem {
-        Fedora: {
+
+        'CentOS', 'Fedora': {
 
             $services = [
                 'sshd',
@@ -25,7 +30,7 @@ class openssh::params {
         }
 
         default: {
-            fail ("The openssh module is not yet supported on ${::operatingsystem}.")
+            fail ("${title}: operating system '${::operatingsystem}' is not supported")
         }
 
     }
