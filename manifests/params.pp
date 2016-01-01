@@ -11,7 +11,7 @@
 #
 # === Copyright
 #
-# Copyright 2012-2015 John Florian
+# Copyright 2012-2016 John Florian
 
 
 class openssh::params {
