@@ -16,6 +16,11 @@
 #   the fully-qualified hostname (e.g., 'burmese.python.org') and its primary
 #   (as determined by facter) IP address.
 #
+# [*purge_keys*]
+#   If true (the default), then purge any and all SSH hostkeys existing in the
+#   system-wide known_hosts file that are not managed by Puppet.  This has no
+#   effect on any other known_hosts files such as those per user.
+#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -27,7 +32,10 @@
 
 class openssh::hostkeys (
         $aliases=undef,
+        $purge_keys=true,
     ) inherits ::openssh::params {
+
+    validate_bool($purge_keys)
 
     File {
         owner   => 'root',
@@ -92,5 +100,10 @@ class openssh::hostkeys (
 
     # Import hostkeys to all hosts.
     Sshkey <<| |>>
+
+    # Remove any hostkeys that are not managed by Puppet.
+    resources  { 'sshkey':
+        purge => $purge_keys,
+    }
 
 }
