@@ -58,7 +58,10 @@ class openssh::hostkeys (
         require         => Class['openssh::server'],
     }
 
-    # Export all types of hostkeys from all hosts.
+    # Export all types of hostkeys from all hosts.  Types are given as first
+    # field for each public key in /etc/ssh/ssh_host_*_key.pub.  The
+    # conditions however are based on variables provided by facter.  For those
+    # running "facter | grep ssh.*key" can be useful.
     if $::sshdsakey {
         @@sshkey { "${::fqdn}_dsa":
             type => 'dsa',
@@ -77,6 +80,13 @@ class openssh::hostkeys (
         @@sshkey { "${::fqdn}_ecdsa":
             type => 'ecdsa-sha2-nistp256',
             key  => $::sshecdsakey,
+        }
+    }
+
+    if $::sshed25519key {
+        @@sshkey { "${::fqdn}_ed25519":
+            type => 'ssh-ed25519',
+            key  => $::sshed25519key,
         }
     }
 
