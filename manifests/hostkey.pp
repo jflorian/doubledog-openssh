@@ -10,10 +10,14 @@
 #
 # === Parameters
 #
+# ==== Required
+#
 # [*namevar*]
 #   Name of the host key files.  The public-key file will be deployed as
 #   "${location}/${name}.pub" whereas the private-key file will be named
 #   "${location}/${name}".  See also the "location" parameter.
+#
+# ==== Optional
 #
 # [*ensure*]
 #   Instance is to be 'present' (default) or 'absent'.

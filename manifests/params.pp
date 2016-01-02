@@ -7,7 +7,6 @@
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
-#   John Florian <john.florian@dart.biz>
 #
 # === Copyright
 #
@@ -20,12 +19,8 @@ class openssh::params {
 
         'CentOS', 'Fedora': {
 
-            $services = [
-                'sshd',
-            ]
-            $packages = [
-                'openssh-server',
-            ]
+            $services = 'sshd'
+            $packages = 'openssh-server'
 
         }
 

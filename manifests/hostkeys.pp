@@ -2,9 +2,13 @@
 #
 # == Class: openssh::hostkeys
 #
-# Configures known host keys for the OpenSSH server.
+# Manages host keys for the OpenSSH server.
 #
 # === Parameters
+#
+# ==== Required
+#
+# ==== Optional
 #
 # [*aliases*]
 #   A list of other valid identities for this host.  By default, the hostkey
@@ -15,12 +19,15 @@
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
-#   John Florian <john.florian@dart.biz>
+#
+# === Copyright
+#
+# Copyright 2013-2016 John Florian
 
 
 class openssh::hostkeys (
         $aliases=undef,
-    ) {
+    ) inherits ::openssh::params {
 
     File {
         owner   => 'root',

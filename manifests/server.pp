@@ -2,51 +2,62 @@
 #
 # == Class: openssh::server
 #
-# Configures a host as an OpenSSH server.
+# Manages the OpenSSH server.
 #
 # === Parameters
 #
+# ==== Required
+#
+# ==== Optional
+#
+# [*enable*]
+#   Instance is to be started at boot.  Either true (default) or false.
+#
+# [*ensure*]
+#   Instance is to be 'running' (default) or 'stopped'.
+#
 # [*content*]
-#   Literal content for the openssh server configuration file.  One and only
-#   one of "content" or "source" must be given.
+#   Literal content for the OpenSSH server's configuration file.  If neither
+#   "content" nor "source" is given, the content of the file will be left
+#   unmanaged.
 #
 # [*source*]
-#   URI of the openssh server configuration file content.  One and only one of
-#   "content" or "source" must be given.
-#
-# [*manage_firewall*]
-#   If true, open the SSH port on the firewall.  Otherwise the firewall is
-#   left unaffected.  Defaults to true.
+#   URI of the OpenSSH server's configuration file content.  If neither
+#   "content" nor "source" is given, the content of the file will be left
+#   unmanaged.
 #
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
-#   John Florian <john.florian@dart.biz>
+#
+# === Copyright
+#
+# Copyright 2012-2016 John Florian
 
 
 class openssh::server (
+        $enable=true,
+        $ensure='running',
         $content=undef,
         $source=undef,
         $manage_firewall=true,
-    ) {
+    ) inherits ::openssh::params {
 
-    include 'openssh::params'
-
-    package { $openssh::params::packages:
+    package { $::openssh::params::packages:
         ensure => installed,
-        notify => Service[$openssh::params::services],
+        notify => Service[$::openssh::params::services],
     }
 
     File {
-        owner       => 'root',
-        group       => 'root',
-        mode        => '0600',
-        seluser     => 'system_u',
-        selrole     => 'object_r',
-        seltype     => 'etc_t',
-        before      => Service[$openssh::params::services],
-        notify      => Service[$openssh::params::services],
-        subscribe   => Package[$openssh::params::packages],
+        owner     => 'root',
+        group     => 'root',
+        mode      => '0600',
+        seluser   => 'system_u',
+        selrole   => 'object_r',
+        seltype   => 'etc_t',
+        before    => Service[$::openssh::params::services],
+        notify    => Service[$::openssh::params::services],
+        subscribe => Package[$::openssh::params::packages],
     }
 
     file { '/etc/ssh/sshd_config':
@@ -63,9 +74,9 @@ class openssh::server (
         }
     }
 
-    service { $openssh::params::services:
-        ensure     => running,
-        enable     => true,
+    service { $::openssh::params::services:
+        ensure     => $ensure,
+        enable     => $enable,
         hasrestart => true,
         hasstatus  => true,
     }
