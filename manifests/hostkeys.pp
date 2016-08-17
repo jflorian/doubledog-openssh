@@ -70,13 +70,6 @@ class openssh::hostkeys (
     # field for each public key in /etc/ssh/ssh_host_*_key.pub.  The
     # conditions however are based on variables provided by facter.  For those
     # running "facter | grep ssh.*key" can be useful.
-    if $::sshdsakey {
-        @@sshkey { "${::fqdn}_dsa":
-            type => 'dsa',
-            key  => $::sshdsakey,
-        }
-    }
-
     if $::sshrsakey {
         @@sshkey { "${::fqdn}_rsa":
             type => 'rsa',
