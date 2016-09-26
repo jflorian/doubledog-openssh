@@ -51,10 +51,7 @@ class openssh::hostkeys (
     file { '/etc/ssh/ssh_known_hosts':
     }
 
-    # This function doesn't work across all hosts for some reason.
-    #$ipaddresses = ipaddresses()
-    # So, nice as it sounds, for now ...
-    $ipaddresses = $::ipaddress
+    $ipaddresses = ipaddresses()
     if $aliases == undef {
         $host_aliases = flatten([$::hostname, $ipaddresses])
     } else {
