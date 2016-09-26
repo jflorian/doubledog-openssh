@@ -53,9 +53,9 @@ class openssh::hostkeys (
 
     $ipaddresses = ipaddresses()
     if $aliases == undef {
-        $host_aliases = flatten([$::hostname, $ipaddresses])
+        $host_aliases = flatten([$::fqdn, $::hostname, $ipaddresses])
     } else {
-        $host_aliases = flatten([$::hostname, $aliases, $ipaddresses])
+        $host_aliases = flatten([$::fqdn, $::hostname, $aliases, $ipaddresses])
     }
 
     Sshkey {
