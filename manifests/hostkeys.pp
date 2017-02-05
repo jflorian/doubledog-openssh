@@ -27,7 +27,7 @@
 #
 # === Copyright
 #
-# Copyright 2013-2016 John Florian
+# Copyright 2013-2017 John Florian
 
 
 class openssh::hostkeys (
@@ -37,18 +37,17 @@ class openssh::hostkeys (
 
     validate_bool($purge_keys)
 
-    File {
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
-        seluser => 'system_u',
-        selrole => 'object_r',
-        seltype => 'etc_t',
-    }
-
-    # Make sure the known_hosts file is readable by non-root users.  See
-    # http://projects.reductivelabs.com/issues/2014.
-    file { '/etc/ssh/ssh_known_hosts':
+    file {
+        default:
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0644',
+            seluser => 'system_u',
+            selrole => 'object_r',
+            seltype => 'etc_t',
+            ;
+        '/etc/ssh/ssh_known_hosts':
+            ;
     }
 
     $ipaddresses = ipaddresses()

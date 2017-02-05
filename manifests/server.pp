@@ -32,7 +32,7 @@
 #
 # === Copyright
 #
-# Copyright 2012-2016 John Florian
+# Copyright 2012-2017 John Florian
 
 
 class openssh::server (
@@ -48,21 +48,22 @@ class openssh::server (
         notify => Service[$::openssh::params::services],
     }
 
-    File {
-        owner     => 'root',
-        group     => 'root',
-        mode      => '0600',
-        seluser   => 'system_u',
-        selrole   => 'object_r',
-        seltype   => 'etc_t',
-        before    => Service[$::openssh::params::services],
-        notify    => Service[$::openssh::params::services],
-        subscribe => Package[$::openssh::params::packages],
-    }
-
-    file { '/etc/ssh/sshd_config':
-        content => $content,
-        source  => $source,
+    file {
+        default:
+            owner     => 'root',
+            group     => 'root',
+            mode      => '0600',
+            seluser   => 'system_u',
+            selrole   => 'object_r',
+            seltype   => 'etc_t',
+            before    => Service[$::openssh::params::services],
+            notify    => Service[$::openssh::params::services],
+            subscribe => Package[$::openssh::params::packages],
+            ;
+        '/etc/ssh/sshd_config':
+            content => $content,
+            source  => $source,
+            ;
     }
 
     if $manage_firewall {
