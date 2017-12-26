@@ -8,9 +8,6 @@
 #
 # ==== Optional
 #
-# [*enable*]
-#   Instance is to be started at boot.  Either true (default) or false.
-#
 # [*ensure*]
 #   Instance is to be 'running' (default) or 'stopped'.
 #
@@ -34,7 +31,7 @@
 
 
 class openssh::server (
-        $enable=true,
+        Boolean                     $enable,
         $ensure='running',
         $content=undef,
         Array[String[1], 1]         $packages,

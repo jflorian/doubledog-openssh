@@ -43,6 +43,9 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 
 This class manages the OpenSSH server package installation, configuration and service.
 
+##### `enable`
+Instance is to be started at boot.  Either `true` (default) or `false`.
+
 ##### `packages`
 An array of package names needed for the OpenSSH server installation.  The default should be correct for supported platforms.
 
