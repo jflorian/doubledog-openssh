@@ -40,11 +40,12 @@ class openssh::server (
         Array[String[1], 1]         $packages,
         $source=undef,
         $manage_firewall=true,
-    ) inherits ::openssh::params {
+        String[1]                   $service,
+    ) {
 
     package { $packages:
         ensure => installed,
-        notify => Service[$::openssh::params::services],
+        notify => Service[$service],
     }
 
     file {
@@ -55,8 +56,8 @@ class openssh::server (
             seluser   => 'system_u',
             selrole   => 'object_r',
             seltype   => 'etc_t',
-            before    => Service[$::openssh::params::services],
-            notify    => Service[$::openssh::params::services],
+            before    => Service[$service],
+            notify    => Service[$service],
             subscribe => Package[$packages],
             ;
         '/etc/ssh/sshd_config':
@@ -74,7 +75,7 @@ class openssh::server (
         }
     }
 
-    service { $::openssh::params::services:
+    service { $service:
         ensure     => $ensure,
         enable     => $enable,
         hasrestart => true,

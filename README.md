@@ -46,6 +46,10 @@ This class manages the OpenSSH server package installation, configuration and se
 ##### `packages`
 An array of package names needed for the OpenSSH server installation.  The default should be correct for supported platforms.
 
+##### `service`
+The service names needed for the OpenSSH server.  The default should be correct for supported platforms.
+
+
 ### Defined types
 
 

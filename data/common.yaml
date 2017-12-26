@@ -2,3 +2,4 @@
 
 openssh::server::packages:
     - openssh-server
+openssh::server::service:           sshd

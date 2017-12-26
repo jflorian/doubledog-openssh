@@ -33,7 +33,7 @@
 class openssh::hostkeys (
         $aliases=undef,
         $purge_keys=true,
-    ) inherits ::openssh::params {
+    ) {
 
     validate_bool($purge_keys)
 
