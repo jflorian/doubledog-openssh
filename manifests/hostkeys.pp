@@ -37,7 +37,7 @@ class openssh::hostkeys (
         require      => Class['::openssh::server'],
     }
 
-    # Export all types of hostkeys from all hosts.  Types are given as first
+    # Export all types of host keys from this host.  Types are given as first
     # field for each public key in /etc/ssh/ssh_host_*_key.pub.  The
     # conditions however are based on variables provided by facter.  For those
     # running "facter | grep ssh.*key" can be useful.
@@ -62,10 +62,10 @@ class openssh::hostkeys (
         }
     }
 
-    # Import hostkeys to all hosts.
+    # Import all host keys from the other hosts.
     Sshkey <<| |>>
 
-    # Remove any hostkeys that are not managed by Puppet.
+    # Remove any host keys that are not managed by Puppet.
     resources  { 'sshkey':
         purge => $purge_keys,
     }
