@@ -1,1 +1,4 @@
 ---
+
+openssh::server::packages:
+    - openssh-server

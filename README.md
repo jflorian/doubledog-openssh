@@ -32,11 +32,19 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 
 **Classes:**
 
+* [openssh::server](#opensshserver-class)
+
 **Defined types:**
 
 
 ### Classes
 
+#### openssh::server class
+
+This class manages the OpenSSH server package installation, configuration and service.
+
+##### `packages`
+An array of package names needed for the OpenSSH server installation.  The default should be correct for supported platforms.
 
 ### Defined types
 

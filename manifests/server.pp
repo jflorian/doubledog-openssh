@@ -1,5 +1,3 @@
-# modules/openssh/manifests/server.pp
-#
 # == Class: openssh::server
 #
 # Manages the OpenSSH server.
@@ -39,11 +37,12 @@ class openssh::server (
         $enable=true,
         $ensure='running',
         $content=undef,
+        Array[String[1], 1]         $packages,
         $source=undef,
         $manage_firewall=true,
     ) inherits ::openssh::params {
 
-    package { $::openssh::params::packages:
+    package { $packages:
         ensure => installed,
         notify => Service[$::openssh::params::services],
     }
@@ -58,7 +57,7 @@ class openssh::server (
             seltype   => 'etc_t',
             before    => Service[$::openssh::params::services],
             notify    => Service[$::openssh::params::services],
-            subscribe => Package[$::openssh::params::packages],
+            subscribe => Package[$packages],
             ;
         '/etc/ssh/sshd_config':
             content => $content,

@@ -10,7 +10,7 @@
 #
 # === Copyright
 #
-# Copyright 2012-2016 John Florian
+# Copyright 2012-2017 John Florian
 
 
 class openssh::params {
@@ -20,7 +20,6 @@ class openssh::params {
         'CentOS', 'Fedora': {
 
             $services = 'sshd'
-            $packages = 'openssh-server'
 
         }
 
