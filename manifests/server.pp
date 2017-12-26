@@ -8,9 +8,6 @@
 #
 # ==== Optional
 #
-# [*ensure*]
-#   Instance is to be 'running' (default) or 'stopped'.
-#
 # [*content*]
 #   Literal content for the OpenSSH server's configuration file.  If neither
 #   "content" nor "source" is given, the content of the file will be left
@@ -31,13 +28,13 @@
 
 
 class openssh::server (
-        Boolean                     $enable,
-        $ensure='running',
+        Boolean                                         $enable,
+        Variant[Boolean, Enum['running', 'stopped']]    $ensure,
         $content=undef,
-        Array[String[1], 1]         $packages,
+        Array[String[1], 1]                             $packages,
         $source=undef,
         $manage_firewall=true,
-        String[1]                   $service,
+        String[1]                                       $service,
     ) {
 
     package { $packages:
