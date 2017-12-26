@@ -17,7 +17,7 @@ class openssh::server (
         Optional[String]                                $content,
         Array[String[1], 1]                             $packages,
         Optional[String[1]]                             $source,
-        $manage_firewall=true,
+        Boolean                                         $manage_firewall,
         String[1]                                       $service,
     ) {
 

@@ -3,6 +3,7 @@
 openssh::server::content:           ~
 openssh::server::enable:            true
 openssh::server::ensure:            running
+openssh::server::manage_firewall:   true
 openssh::server::packages:
     - openssh-server
 openssh::server::service:           sshd

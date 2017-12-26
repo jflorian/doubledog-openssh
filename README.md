@@ -52,6 +52,9 @@ Instance is to be started at boot.  Either `true` (default) or `false`.
 ##### `ensure`
 Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
 
+##### `manage_firewall`
+A Boolean value indicating whether to manage the firewall or not.  Defaults to `true`.
+
 ##### `packages`
 An array of package names needed for the OpenSSH server installation.  The default should be correct for supported platforms.
 
