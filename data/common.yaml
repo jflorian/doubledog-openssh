@@ -1,6 +1,7 @@
 ---
 
 openssh::hostkeys::aliases:         []
+openssh::hostkeys::purge_keys:      true
 
 openssh::server::content:           ~
 openssh::server::enable:            true

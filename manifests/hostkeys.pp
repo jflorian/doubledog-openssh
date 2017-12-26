@@ -2,17 +2,6 @@
 #
 # Manages host keys for the OpenSSH server.
 #
-# === Parameters
-#
-# ==== Required
-#
-# ==== Optional
-#
-# [*purge_keys*]
-#   If true (the default), then purge any and all SSH hostkeys existing in the
-#   system-wide known_hosts file that are not managed by Puppet.  This has no
-#   effect on any other known_hosts files such as those per user.
-#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -24,10 +13,8 @@
 
 class openssh::hostkeys (
         Array[String[1]]    $aliases,
-        $purge_keys=true,
+        Boolean             $purge_keys,
     ) {
-
-    validate_bool($purge_keys)
 
     file {
         default:
