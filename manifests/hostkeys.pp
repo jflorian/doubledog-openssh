@@ -38,7 +38,7 @@ class openssh::hostkeys (
 
     Sshkey {
         host_aliases    => $host_aliases,
-        require         => Class['openssh::server'],
+        require         => Class['::openssh::server'],
     }
 
     # Export all types of hostkeys from all hosts.  Types are given as first
