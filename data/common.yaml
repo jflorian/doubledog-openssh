@@ -1,5 +1,6 @@
 ---
 
+openssh::server::content:           ~
 openssh::server::enable:            true
 openssh::server::ensure:            running
 openssh::server::packages:

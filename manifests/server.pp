@@ -8,11 +8,6 @@
 #
 # ==== Optional
 #
-# [*content*]
-#   Literal content for the OpenSSH server's configuration file.  If neither
-#   "content" nor "source" is given, the content of the file will be left
-#   unmanaged.
-#
 # [*source*]
 #   URI of the OpenSSH server's configuration file content.  If neither
 #   "content" nor "source" is given, the content of the file will be left
@@ -30,7 +25,7 @@
 class openssh::server (
         Boolean                                         $enable,
         Variant[Boolean, Enum['running', 'stopped']]    $ensure,
-        $content=undef,
+        Optional[String]                                $content,
         Array[String[1], 1]                             $packages,
         $source=undef,
         $manage_firewall=true,

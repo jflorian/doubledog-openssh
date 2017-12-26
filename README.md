@@ -43,6 +43,9 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 
 This class manages the OpenSSH server package installation, configuration and service.
 
+##### `content`
+Literal content for the server's configuration file.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
+
 ##### `enable`
 Instance is to be started at boot.  Either `true` (default) or `false`.
 
