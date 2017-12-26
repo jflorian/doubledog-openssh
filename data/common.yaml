@@ -1,5 +1,7 @@
 ---
 
+openssh::hostkeys::aliases:         []
+
 openssh::server::content:           ~
 openssh::server::enable:            true
 openssh::server::ensure:            running

@@ -1,5 +1,3 @@
-# modules/openssh/manifests/hostkeys.pp
-#
 # == Class: openssh::hostkeys
 #
 # Manages host keys for the OpenSSH server.
@@ -9,12 +7,6 @@
 # ==== Required
 #
 # ==== Optional
-#
-# [*aliases*]
-#   A list of other valid identities for this host.  By default, the hostkey
-#   of each type will be associated with the short hostname (e.g., 'burmese'),
-#   the fully-qualified hostname (e.g., 'burmese.python.org') and its primary
-#   (as determined by facter) IP address.
 #
 # [*purge_keys*]
 #   If true (the default), then purge any and all SSH hostkeys existing in the
@@ -31,7 +23,7 @@
 
 
 class openssh::hostkeys (
-        $aliases=undef,
+        Array[String[1]]    $aliases,
         $purge_keys=true,
     ) {
 

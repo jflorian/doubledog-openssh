@@ -32,12 +32,23 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 
 **Classes:**
 
+* [openssh::hostkeys](#opensshhostkeys-class)
 * [openssh::server](#opensshserver-class)
 
 **Defined types:**
 
 
 ### Classes
+
+#### openssh::hostkeys class
+
+This class manages the public host keys for the OpenSSH server.  It will export all common keys discovered and simultaneously import all previously exported keys so that each is known to the OpenSSH server as a trusted "known host".
+
+Any "known host" keys that are configured for the server, but which are not found as exports, can be automatically deleted.  This behavior eliminates any false or obsolete trust and works best when exported resources are set to auto-expire if not regularly refreshed via constant exort.
+
+##### `aliases`
+An array of other valid identities for this host.  By default, the host key of each type will be associated with the short hostname (e.g., `burmese`), the fully-qualified hostname (e.g., `burmese.python.org`) and its primary (as determined by facter) IP address.  If this parameter is set, it's only necessary to specify any other identies as the default identies will be applied regardless.
+
 
 #### openssh::server class
 
