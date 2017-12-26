@@ -30,11 +30,11 @@ class openssh::hostkeys (
     }
 
     $ipaddresses = ipaddresses()
-    $host_aliases = flatten([$::fqdn, $::hostname, $aliases, $ipaddresses])
+    $host_aliases = sort(flatten([$::fqdn, $::hostname, $aliases, $ipaddresses]))
 
     Sshkey {
-        host_aliases    => $host_aliases,
-        require         => Class['::openssh::server'],
+        host_aliases => $host_aliases,
+        require      => Class['::openssh::server'],
     }
 
     # Export all types of hostkeys from all hosts.  Types are given as first
