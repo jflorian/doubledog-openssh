@@ -58,6 +58,9 @@ An array of package names needed for the OpenSSH server installation.  The defau
 ##### `service`
 The service names needed for the OpenSSH server.  The default should be correct for supported platforms.
 
+##### `source`
+URI of the server's configuration file content.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
+
 
 ### Defined types
 

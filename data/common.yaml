@@ -6,3 +6,4 @@ openssh::server::ensure:            running
 openssh::server::packages:
     - openssh-server
 openssh::server::service:           sshd
+openssh::server::source:            ~

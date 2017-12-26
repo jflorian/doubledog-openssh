@@ -2,17 +2,6 @@
 #
 # Manages the OpenSSH server.
 #
-# === Parameters
-#
-# ==== Required
-#
-# ==== Optional
-#
-# [*source*]
-#   URI of the OpenSSH server's configuration file content.  If neither
-#   "content" nor "source" is given, the content of the file will be left
-#   unmanaged.
-#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -27,7 +16,7 @@ class openssh::server (
         Variant[Boolean, Enum['running', 'stopped']]    $ensure,
         Optional[String]                                $content,
         Array[String[1], 1]                             $packages,
-        $source=undef,
+        Optional[String[1]]                             $source,
         $manage_firewall=true,
         String[1]                                       $service,
     ) {
