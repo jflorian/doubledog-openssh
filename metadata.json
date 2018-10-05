@@ -7,19 +7,28 @@
     "source": "https://www.doubledog.org/git/puppet-openssh.git",
     "project_page": "https://github.com/jflorian/doubledog-openssh",
     "issues_url": "https://github.com/jflorian/doubledog-openssh/issues",
-    "operatingsystem_support": [{
-        "operatingsystem": "CentOS",
-        "operatingsystemrelease": "7.0"
-    }, {
-        "operatingsystem": "Fedora",
-        "operatingsystemrelease": ["25", "26", "27"]
-    }],
-    "dependencies": [{
-		"name": "puppetlabs/firewall",
-		"version_requirement": ">= 1.8.0 < 2.0.0"
-	}, {
-        "name": "puppetlabs/stdlib",
-        "version_requirement": ">= 4.0.0 < 5.0.0"
-    }],
-    "data_provider": "hiera"
+    "operatingsystem_support": [
+        {
+            "operatingsystem": "CentOS",
+            "operatingsystemrelease": "7.0"
+        },
+        {
+            "operatingsystem": "Fedora",
+            "operatingsystemrelease": [
+                "25",
+                "26",
+                "27"
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "puppetlabs/firewall",
+            "version_requirement": ">= 1.8.0 < 2.0.0"
+        },
+        {
+            "name": "puppetlabs/stdlib",
+            "version_requirement": ">= 4.0.0 < 5.0.0"
+        }
+    ]
 }
