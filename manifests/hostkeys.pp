@@ -8,7 +8,9 @@
 #
 # === Copyright
 #
-# Copyright 2013-2017 John Florian
+# This file is part of the doubledog-openssh Puppet module.
+# Copyright 2013-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 class openssh::hostkeys (
@@ -29,7 +31,7 @@ class openssh::hostkeys (
             ;
     }
 
-    $ipaddresses = ipaddresses()
+    $ipaddresses = openssh::ipaddresses()
     $host_aliases = sort(flatten([$::fqdn, $::hostname, $aliases, $ipaddresses]))
 
     Sshkey {

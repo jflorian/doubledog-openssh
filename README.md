@@ -1,3 +1,9 @@
+<!--
+This file is part of the doubledog-openssh Puppet module.
+Copyright 2017-2018 John Florian <jflorian@doubledog.org>
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # openssh
 
 #### Table of Contents
@@ -11,6 +17,9 @@
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
     * [Classes](#classes)
     * [Defined types](#defined-types)
+    * [Data types](#data-types)
+    * [Facts](#facts)
+    * [Functions](#functions)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
 
@@ -36,6 +45,14 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 * [openssh::server](#opensshserver-class)
 
 **Defined types:**
+
+**Data types:**
+
+**Facts:**
+
+**Functions:**
+
+* [openssh::ipaddresses](#opensshipaddresses-function)
 
 
 ### Classes
@@ -82,12 +99,23 @@ URI of the server's configuration file content.  If neither `content` nor `sourc
 ### Defined types
 
 
+### Data types
+
+### Facts
+
+### Functions
+
+
+#### openssh::ipaddresses function
+
+Returns all IP addresses of all network interfaces (except `lo`, the loopback) found by facter.
+
+
 ## Limitations
 
 Tested on modern Fedora and CentOS releases, but likely to work on any Red Hat variant.  Adaptations for other operating s
 
-This should be compatible with Puppet 3.x and is being used with Puppet 4.x as
-well.
+This module requires Puppet 4 or later.
 
 ## Development
 
