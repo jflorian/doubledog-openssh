@@ -40,6 +40,9 @@ Puppet::Functions.create_function(:'openssh::ipaddresses') do
             result << ipaddr if ipaddr && (ipaddr != :undefined)
             result << ipaddr6 if ipaddr6 && (ipaddr6 != :undefined)
         end
+        # Discard IPv6 link-local addresses.
+        ll = IPAddr.new('fe80::/64')
+        result.delete_if {|addr| ll.include?(IPAddr.new(addr)) }
         result
     end
 
