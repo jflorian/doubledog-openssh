@@ -1,3 +1,4 @@
+#
 # == Class: openssh::hostkeys
 #
 # Manages host keys for the OpenSSH server.

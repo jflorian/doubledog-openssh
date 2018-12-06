@@ -1,3 +1,4 @@
+#
 # == Class: openssh::server
 #
 # Manages the OpenSSH server.
@@ -8,17 +9,19 @@
 #
 # === Copyright
 #
-# Copyright 2012-2017 John Florian
+# This file is part of the doubledog-openssh Puppet module.
+# Copyright 2012-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 class openssh::server (
-        Boolean                                         $enable,
-        Variant[Boolean, Enum['running', 'stopped']]    $ensure,
-        Optional[String]                                $content,
-        Array[String[1], 1]                             $packages,
-        Optional[String[1]]                             $source,
-        Boolean                                         $manage_firewall,
-        String[1]                                       $service,
+        Boolean                 $enable,
+        Ddolib::Service::Ensure $ensure,
+        Optional[String]        $content,
+        Array[String[1], 1]     $packages,
+        Optional[String[1]]     $source,
+        Boolean                 $manage_firewall,
+        String[1]               $service,
     ) {
 
     package { $packages:
