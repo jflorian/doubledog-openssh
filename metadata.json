@@ -1,6 +1,6 @@
 {
     "name": "doubledog-openssh",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "author": "John Florian",
     "summary": "A module to securely manage all things related to OpenSSH",
     "license": "GPL-3.0",
