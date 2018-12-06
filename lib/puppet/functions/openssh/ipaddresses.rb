@@ -1,8 +1,8 @@
 #
 # == Function: openssh::ipaddresses
 #
-# Returns all IP addresses of all network interfaces (except lo) found by
-# facter.
+# Returns all IP addresses of all network interfaces found by facter, except
+# those specified to be excluded.
 #
 # === Authors
 #
@@ -21,16 +21,16 @@
 
 Puppet::Functions.create_function(:'openssh::ipaddresses') do
     dispatch :ipaddresses do
+        param 'Array[String]', :exclude
         return_type 'Array[String]'
     end
 
-    def ipaddresses()
+    def ipaddresses(exclude)
         scope = closure_scope
-        interfaces = scope['facts']['interfaces'].split(',')
+        interfaces = scope['facts']['interfaces'].split(',') - exclude
 
         result = []
         interfaces.each do |iface|
-            next if iface.include?('lo')
             ipaddr = scope['facts']["ipaddress_#{iface}"]
             ipaddr6 = scope['facts']["ipaddress6_#{iface}"]
             result << ipaddr if ipaddr && (ipaddr != :undefined)

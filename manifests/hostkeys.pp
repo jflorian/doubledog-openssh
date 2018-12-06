@@ -15,6 +15,7 @@
 
 class openssh::hostkeys (
         Array[String[1]]    $aliases,
+        Array[String[1]]    $exclude_interfaces,
         Boolean             $purge_keys,
     ) {
 
@@ -31,7 +32,7 @@ class openssh::hostkeys (
             ;
     }
 
-    $ipaddresses = openssh::ipaddresses()
+    $ipaddresses = openssh::ipaddresses($exclude_interfaces)
     $host_aliases = sort(flatten([$::fqdn, $::hostname, $aliases, $ipaddresses]))
 
     Sshkey {
