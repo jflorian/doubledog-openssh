@@ -26,25 +26,15 @@ Puppet::Functions.create_function(:'openssh::ipaddresses') do
 
     def ipaddresses()
         scope = closure_scope
-        interfaces = scope['facts']['interfaces']
+        interfaces = scope['facts']['interfaces'].split(',')
 
         result = []
-        if interfaces.count(',') > 0
-            interfaces = interfaces.split(',')
-            interfaces.each do |iface|
-                next if iface.include?('lo')
-                ipaddr = scope['facts']["ipaddress_#{iface}"]
-                ipaddr6 = scope['facts']["ipaddress6_#{iface}"]
-                result << ipaddr if ipaddr && (ipaddr != :undefined)
-                result << ipaddr6 if ipaddr6 && (ipaddr6 != :undefined)
-            end
-        else
-            unless interfaces.include?('lo')
-                ipaddr = scope['facts']["ipaddress_#{interfaces}"]
-                ipaddr6 = scope['facts']["ipaddress6_#{interfaces}"]
-                result << ipaddr if ipaddr && (ipaddr != :undefined)
-                result << ipaddr6 if ipaddr6 && (ipaddr6 != :undefined)
-            end
+        interfaces.each do |iface|
+            next if iface.include?('lo')
+            ipaddr = scope['facts']["ipaddress_#{iface}"]
+            ipaddr6 = scope['facts']["ipaddress6_#{iface}"]
+            result << ipaddr if ipaddr && (ipaddr != :undefined)
+            result << ipaddr6 if ipaddr6 && (ipaddr6 != :undefined)
         end
         result
     end
