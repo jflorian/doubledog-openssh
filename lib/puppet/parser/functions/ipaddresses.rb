@@ -1,3 +1,24 @@
+#
+# == Function: ipaddresses
+#
+# Returns all IP addresses of all network interfaces (except lo) found by
+# facter.
+#
+# === Authors
+#
+#   Steffen Zieger <github@saz.sh>
+#   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# This file is part of the doubledog-openssh Puppet module.
+# Copyright 2014-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Based heavily on source from https://github.com/saz/puppet-ssh
+# Copyright 2011 Steffen Zieger
+
+
 module Puppet::Parser::Functions
   newfunction(:ipaddresses, type: :rvalue, doc: <<-EOS
 Returns all ip addresses of network interfaces (except lo) found by facter.
