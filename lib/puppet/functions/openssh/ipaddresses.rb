@@ -21,13 +21,17 @@
 
 Puppet::Functions.create_function(:'openssh::ipaddresses') do
     dispatch :ipaddresses do
-        param 'Array[String]', :exclude
+        param 'Array[String]', :exclusions
         return_type 'Array[String]'
     end
 
-    def ipaddresses(exclude)
+    def ipaddresses(exclusions)
         scope = closure_scope
-        interfaces = scope['facts']['interfaces'].split(',') - exclude
+        interfaces = scope['facts']['interfaces'].split(',')
+
+        exclusions.each do |exclusion|
+            interfaces.delete_if { |iface| iface.start_with?(exclusion) }
+        end
 
         result = []
         interfaces.each do |iface|

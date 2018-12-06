@@ -111,7 +111,7 @@ URI of the server's configuration file content.  If neither `content` nor `sourc
 
 #### openssh::ipaddresses function
 
-Returns all IP addresses of all network interfaces found by facter.  This requires a single argument specifying an array of interface names to be excluded, e.g., `['lo']`.
+Returns all IP addresses of all network interfaces found by facter.  This requires a single argument specifying an array of interface name prefixes to be excluded, e.g., `['lo', 'tun']`.
 
 
 ## Limitations
