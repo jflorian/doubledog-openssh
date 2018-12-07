@@ -67,7 +67,7 @@ Any "known host" keys that are configured for the server, but which are not foun
 An array of other valid identities for this host.  By default, the host key of each type will be associated with the short hostname (e.g., `burmese`), the fully-qualified hostname (e.g., `burmese.python.org`) and its primary (as determined by facter) IP address.  If this parameter is set, it's only necessary to specify any other identities as the default identities will be applied regardless.
 
 ##### `exclude_interfaces`
-An array interface names to be excluded when searching for IP addresses to be used as additional aliases for the host keys.  The default is `['lo']` but you might wish to also exclude temporary interfaces, such as those for VPN tunnels.
+An array interface name prefixes to be excluded when searching for IP addresses to be used as additional aliases for the host keys.  The default is `['lo']` but you might wish to also exclude temporary interfaces, such as those for VPN tunnels, e.g., `['lo', 'tun']`.
 
 ##### `purge_keys`
 If `true` (the default), then purge any and all host keys existing in the system-wide "known hosts" file that are not managed by Puppet.  This has no effect on any other "known hosts" files such as those per user.
