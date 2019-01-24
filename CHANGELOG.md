@@ -1,6 +1,6 @@
 <!--
 # This file is part of the doubledog-openssh Puppet module.
-# Copyright 2018 John Florian
+# Copyright 2018-2019 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 Template
@@ -18,6 +18,10 @@ Template
 # Change log
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
+
+## [1.4.0] 2019-01-24
+### Changed
+- dependency on `doubledog/ddolib` now expects 1 >= version < 2
 
 ## [1.3.0] 2018-12-16
 ### Changed
