@@ -19,6 +19,11 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [1.5.0] 2019-02-20
+### Added
+- `openssh::known_host` defined type
+- `openssh::server::known_hosts` parameter
+
 ## [1.4.0] 2019-01-24
 ### Changed
 - dependency on `doubledog/ddolib` now expects 1 >= version < 2

@@ -10,7 +10,7 @@
 # === Copyright
 #
 # This file is part of the doubledog-openssh Puppet module.
-# Copyright 2013-2018 John Florian
+# Copyright 2013-2019 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -34,35 +34,33 @@ class openssh::hostkeys (
     }
 
     $ipaddresses = openssh::ipaddresses($exclude_interfaces)
-    $host_aliases = sort(flatten([$::fqdn, $::hostname, $aliases, $ipaddresses]))
-
-    Sshkey {
-        host_aliases => $host_aliases,
-        require      => Class['::openssh::server'],
-    }
+    $host_aliases = [$::fqdn, $::hostname, $aliases, $ipaddresses]
 
     # Export all types of host keys from this host.  Types are given as first
     # field for each public key in /etc/ssh/ssh_host_*_key.pub.  The
     # conditions however are based on variables provided by facter.  For those
     # running "facter | grep ssh.*key" can be useful.
     if $::sshrsakey {
-        @@sshkey { "${::fqdn}_rsa":
-            type => 'rsa',
-            key  => $::sshrsakey,
+        openssh::known_host { "${::fqdn}_rsa":
+            aliases => $host_aliases,
+            key     => $::sshrsakey,
+            type    => 'rsa',
         }
     }
 
     if $::sshecdsakey {
-        @@sshkey { "${::fqdn}_ecdsa":
-            type => 'ecdsa-sha2-nistp256',
-            key  => $::sshecdsakey,
+        openssh::known_host { "${::fqdn}_ecdsa":
+            aliases => $host_aliases,
+            key     => $::sshecdsakey,
+            type    => 'ecdsa-sha2-nistp256',
         }
     }
 
     if $::sshed25519key {
-        @@sshkey { "${::fqdn}_ed25519":
-            type => 'ssh-ed25519',
-            key  => $::sshed25519key,
+        openssh::known_host { "${::fqdn}_ed25519":
+            aliases => $host_aliases,
+            key     => $::sshed25519key,
+            type    => 'ed25519',
         }
     }
 
