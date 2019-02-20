@@ -88,6 +88,11 @@ Instance is to be started at boot.  Either `true` (default) or `false`.
 ##### `ensure`
 Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
 
+##### `known_hosts`
+A hash whose keys are known host resource names and whose values are hashes comprising the same parameters you would otherwise pass to the [openssh::known\_host](#opensshknown\_host-defined-type) defined type.  The default is none.
+
+This is primarily intended for additional public keys of those hosts not managed by Puppet.  For those managed by Puppet, see the [openssh::hostkeys](#opensshhostkeys-class) class instead.
+
 ##### `manage_firewall`
 A Boolean value indicating whether to manage the firewall or not.  Defaults to `true`.
 
@@ -109,6 +114,8 @@ This defined type manages a OpenSSH known host's public key.  While the [openssh
 
 * servers you access, but do not manage (e.g., GitHub)
 * hardware management (e.g., a managed network switch)
+
+If you have many, you may wish to define them via Hiera and the *known_hosts* parameter on the [openssh::server](#opensshserver-class) class.
 
 ##### `namevar` (required)
 An arbitrary identifier for the instance unless the *key_name* parameter is not set in which case this must provide the value normally set with the *key_name* parameter.

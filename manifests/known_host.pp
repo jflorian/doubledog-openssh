@@ -22,11 +22,8 @@ define openssh::known_host (
         String[1]                       $key_name=$title,
     ) {
 
-    include 'openssh::server'
-
     @@sshkey { $key_name:
         host_aliases => sort(unique(flatten($aliases))),
-        require      => Class['openssh::server'],
         type         => $type,
         key          => $key,
     }

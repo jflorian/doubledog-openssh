@@ -22,6 +22,7 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 ## [1.5.0] WIP
 ### Added
 - `openssh::known_host` defined type
+- `openssh::server::known_hosts` parameter
 ### Changed
 ### Deprecated
 ### Removed
