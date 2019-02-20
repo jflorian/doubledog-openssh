@@ -1,6 +1,6 @@
 <!--
 This file is part of the doubledog-openssh Puppet module.
-Copyright 2017-2018 John Florian <jflorian@doubledog.org>
+Copyright 2017-2019 John Florian <jflorian@doubledog.org>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
@@ -45,6 +45,8 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 * [openssh::server](#opensshserver-class)
 
 **Defined types:**
+
+* [openssh::known\_host](#opensshknown\_host-defined-type)
 
 **Data types:**
 
@@ -100,6 +102,28 @@ URI of the server's configuration file content.  If neither `content` nor `sourc
 
 
 ### Defined types
+
+#### openssh::known\_host defined type
+
+This defined type manages a OpenSSH known host's public key.  While the [openssh::hostkeys](#opensshhostkeys-class) class is the ideal way to manage the public host keys for the OpenSSH server where the Puppet catalog is being applied, this defined type proves useful for making other public host keys known that would not otherwise be collected by Puppet.  Some common examples are:
+
+* servers you access, but do not manage (e.g., GitHub)
+* hardware management (e.g., a managed network switch)
+
+##### `namevar` (required)
+An arbitrary identifier for the instance unless the *key_name* parameter is not set in which case this must provide the value normally set with the *key_name* parameter.
+
+##### `aliases` (required)
+An array of identities for this host.  These can be short hostnames, fully-qualified domain names, or IP addresses.  This array will be flattened (in case there are nested arrays), de-duplicated and sorted.
+
+##### `type` (required)
+The SSH host key type.  Must be one of Puppet's own [sshkey](https://puppet.com/docs/puppet/5.5/types/sshkey.html#sshkey-attribute-type) resource type.  (Those without the `'ssh-'` prefix are preferred.)
+
+##### `ensure`
+Instance is to be `present` (default) or `absent`.
+
+##### `key`
+The public key itself.
 
 
 ### Data types
