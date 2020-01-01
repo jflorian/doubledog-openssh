@@ -1,6 +1,6 @@
 <!--
 This file is part of the doubledog-openssh Puppet module.
-Copyright 2018-2019 John Florian
+Copyright 2018-2020 John Florian
 SPDX-License-Identifier: GPL-3.0-or-later
 
 Template
@@ -21,10 +21,12 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 
 ## [1.6.0] WIP
 ### Added
+- support for Fedora 29-31
 ### Changed
 - dependency on `puppetlabs/firewall` now allows version 2
 ### Deprecated
 ### Removed
+- support for Fedora 27-28
 ### Fixed
 ### Security
 
