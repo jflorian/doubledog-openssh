@@ -21,6 +21,7 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 
 ## [1.6.0] WIP
 ### Added
+- support for EL8
 - support for Fedora 29-31
 ### Changed
 - dependency on `puppetlabs/firewall` now allows version 2
