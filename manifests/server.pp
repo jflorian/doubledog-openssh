@@ -24,6 +24,7 @@ class openssh::server (
         String[1]               $service,
         String[1]               $include_dir='/etc/ssh/sshd_config.d',
         Hash[String[1], Hash]   $known_hosts,
+        Hash[String[1], Hash]   $configs,
     ) {
 
     package { $packages:
@@ -69,5 +70,6 @@ class openssh::server (
     }
 
     create_resources('openssh::known_host', $known_hosts)
+    create_resources('openssh::server::config', $configs)
 
 }

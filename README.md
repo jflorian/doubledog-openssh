@@ -80,6 +80,9 @@ If `true` (the default), then purge any and all host keys existing in the system
 
 This class manages the OpenSSH server package installation, configuration and service.
 
+##### `configs`
+A hash whose keys are drop-in configuration filenames and whose values are hashes comprising the same parameters you would otherwise pass to the [openssh::server::config](#opensshserverconfig-defined-type) defined type.  The default is none.
+
 ##### `content`
 Literal content for the server's configuration file.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
 

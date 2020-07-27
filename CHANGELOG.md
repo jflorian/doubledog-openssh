@@ -22,9 +22,11 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 ## [1.7.0] WIP
 ### Added
 - `openssh::server::config` defined type
+- `openssh::server::configs` parameter
 - `openssh::server::include_dir` parameter
 ### Changed
 - `openssh::server` now manages the directory `include_dir` for drop-in config files
+- `openssh::server` now creates `openssh::server::config` resources per the `configs` parameter.
 ### Deprecated
 ### Removed
 ### Fixed
