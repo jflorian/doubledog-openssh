@@ -1,6 +1,6 @@
 <!--
 This file is part of the doubledog-openssh Puppet module.
-Copyright 2017-2019 John Florian <jflorian@doubledog.org>
+Copyright 2017-2020 John Florian <jflorian@doubledog.org>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
@@ -87,6 +87,9 @@ Instance is to be started at boot.  Either `true` (default) or `false`.
 
 ##### `ensure`
 Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
+
+##### `include_dir`
+Name of the directory where the server expects drop-in configuration files.  The default is `'/etc/ssh/ssh_config.d'`.
 
 ##### `known_hosts`
 A hash whose keys are known host resource names and whose values are hashes comprising the same parameters you would otherwise pass to the [openssh::known\_host](#opensshknown\_host-defined-type) defined type.  The default is none.

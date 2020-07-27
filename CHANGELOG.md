@@ -19,6 +19,16 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [1.7.0] WIP
+### Added
+- `openssh::server::include_dir` parameter
+### Changed
+- `openssh::server` now manages the directory `include_dir` for drop-in config files
+### Deprecated
+### Removed
+### Fixed
+### Security
+
 ## [1.6.0] 2020-01-01
 ### Added
 - support for EL8
