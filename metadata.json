@@ -1,41 +1,50 @@
 {
-    "name": "doubledog-openssh",
-    "version": "1.6.0",
-    "author": "John Florian",
-    "summary": "A module to securely manage all things related to OpenSSH",
-    "license": "GPL-3.0",
-    "source": "https://www.doubledog.org/git/puppet-openssh.git",
-    "project_page": "https://github.com/jflorian/doubledog-openssh",
-    "issues_url": "https://github.com/jflorian/doubledog-openssh/issues",
-    "operatingsystem_support": [
-        {
-            "operatingsystem": "CentOS",
-            "operatingsystemmajrelease": [
-                "7",
-                "8"
-            ]
-        },
-        {
-            "operatingsystem": "Fedora",
-            "operatingsystemrelease": [
-                "29",
-                "30",
-                "31"
-            ]
-        }
-    ],
-    "dependencies": [
-        {
-            "name": "doubledog/ddolib",
-            "version_requirement": ">= 1.0.0 < 2.0.0"
-        },
-        {
-            "name": "puppetlabs/firewall",
-            "version_requirement": ">= 1.8.0 < 3.0.0"
-        },
-        {
-            "name": "puppetlabs/stdlib",
-            "version_requirement": ">= 4.0.0 < 6.0.0"
-        }
-    ]
+  "name": "doubledog-openssh",
+  "version": "1.6.0",
+  "author": "John Florian",
+  "summary": "A module to securely manage all things related to OpenSSH",
+  "license": "GPL-3.0",
+  "source": "https://www.doubledog.org/git/puppet-openssh.git",
+  "project_page": "https://github.com/jflorian/doubledog-openssh",
+  "issues_url": "https://github.com/jflorian/doubledog-openssh/issues",
+  "dependencies": [
+    {
+      "name": "doubledog/ddolib",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
+    },
+    {
+      "name": "puppetlabs/firewall",
+      "version_requirement": ">= 1.8.0 < 3.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0 < 6.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemmajrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "29",
+        "30",
+        "31"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.18.1",
+  "template-url": "pdk-default#1.18.1",
+  "template-ref": "tags/1.18.1-0-g3d2e75c"
 }
