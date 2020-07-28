@@ -19,6 +19,15 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [1.7.1] WIP
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- `openssh::server::config` ignores value of `include_dir`
+### Security
+
 ## [1.7.0] 2020-07-28
 ### Added
 - `openssh::server::config` defined type
