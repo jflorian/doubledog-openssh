@@ -24,11 +24,13 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 - `openssh::server::config` defined type
 - `openssh::server::configs` parameter
 - `openssh::server::include_dir` parameter
+- support for Fedora 32
 ### Changed
 - `openssh::server` now manages the directory `include_dir` for drop-in config files
 - `openssh::server` now creates `openssh::server::config` resources per the `configs` parameter.
 ### Deprecated
 ### Removed
+- support for Fedora 29
 ### Fixed
 ### Security
 
