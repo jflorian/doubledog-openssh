@@ -19,6 +19,18 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [1.7.0] 2020-07-28
+### Added
+- `openssh::server::config` defined type
+- `openssh::server::configs` parameter
+- `openssh::server::include_dir` parameter
+- support for Fedora 32
+### Changed
+- `openssh::server` now manages the directory `include_dir` for drop-in config files
+- `openssh::server` now creates `openssh::server::config` resources per the `configs` parameter.
+### Removed
+- support for Fedora 29
+
 ## [1.6.0] 2020-01-01
 ### Added
 - support for EL8

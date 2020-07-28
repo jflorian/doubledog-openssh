@@ -10,7 +10,7 @@
 # === Copyright
 #
 # This file is part of the doubledog-openssh Puppet module.
-# Copyright 2012-2019 John Florian
+# Copyright 2012-2020 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -22,7 +22,9 @@ class openssh::server (
         Optional[String[1]]     $source,
         Boolean                 $manage_firewall,
         String[1]               $service,
+        String[1]               $include_dir='/etc/ssh/sshd_config.d',
         Hash[String[1], Hash]   $known_hosts,
+        Hash[String[1], Hash]   $configs,
     ) {
 
     package { $packages:
@@ -46,6 +48,9 @@ class openssh::server (
             content => $content,
             source  => $source,
             ;
+        $include_dir:
+            ensure => directory,
+            mode   => '0755',
     }
 
     if $manage_firewall {
@@ -65,5 +70,6 @@ class openssh::server (
     }
 
     create_resources('openssh::known_host', $known_hosts)
+    create_resources('openssh::server::config', $configs)
 
 }

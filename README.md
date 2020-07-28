@@ -1,6 +1,6 @@
 <!--
 This file is part of the doubledog-openssh Puppet module.
-Copyright 2017-2019 John Florian <jflorian@doubledog.org>
+Copyright 2017-2020 John Florian <jflorian@doubledog.org>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
@@ -47,6 +47,7 @@ OpenSSH managed by Puppet, my way, the paranoid way.
 **Defined types:**
 
 * [openssh::known\_host](#opensshknown\_host-defined-type)
+* [openssh::server::config](#opensshserverconfig-defined-type)
 
 **Data types:**
 
@@ -79,6 +80,9 @@ If `true` (the default), then purge any and all host keys existing in the system
 
 This class manages the OpenSSH server package installation, configuration and service.
 
+##### `configs`
+A hash whose keys are drop-in configuration filenames and whose values are hashes comprising the same parameters you would otherwise pass to the [openssh::server::config](#opensshserverconfig-defined-type) defined type.  The default is none.
+
 ##### `content`
 Literal content for the server's configuration file.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
 
@@ -87,6 +91,9 @@ Instance is to be started at boot.  Either `true` (default) or `false`.
 
 ##### `ensure`
 Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
+
+##### `include_dir`
+Name of the directory where the server expects drop-in configuration files.  The default is `'/etc/ssh/ssh_config.d'`.
 
 ##### `known_hosts`
 A hash whose keys are known host resource names and whose values are hashes comprising the same parameters you would otherwise pass to the [openssh::known\_host](#opensshknown\_host-defined-type) defined type.  The default is none.
@@ -131,6 +138,37 @@ Instance is to be `present` (default) or `absent`.
 
 ##### `key`
 The public key itself.
+
+
+#### openssh::server::config defined type
+
+This defined type manages a drop-in configuration file for the OpenSSH server.  This is the preferred means for custom configurations as it minimizes disruptions to distribution configurations, but many of those have only recently adopted this practice so the main configuration must still be managed.  To use these, your main configuration (via *openssh::server::content* or *openssh::server::source*) must have an `Include` directive targeting *openssh::server::include_dir*.
+
+These are typically instantiated via Hiera and the *configs* parameter on the [openssh::server](#opensshserver-class) class.
+
+##### `namevar` (required)
+An arbitrary identifier for the instance unless the *filename* parameter is not set in which case this must provide the value normally set with the *filename* parameter.
+
+##### `content`
+Literal content for the drop-in configuration file.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
+
+##### `ensure`
+Either `'present'` (default) or `'absent'`.
+
+##### `filename`
+Name to be given to the file, without any path details.  A suffix of `'.conf'` is implied and forced.  This may be used in place of *namevar* if it's beneficial to give *namevar* an arbitrary value.
+
+##### `group`
+File group account.  Defaults to `'root'` which is appropriate for most files.
+
+##### `source`
+URI of the drop-in configuration file content.  If neither `content` nor `source` is given, the content of the file will be left unmanaged, though file ownership, mode, SELinux context, etc. will continue to be managed.
+
+##### `mode`
+File access mode.  Defaults to `'0600'` which is appropriate for most files.
+
+##### `owner`
+File owner account.  Defaults to `'root'` which is appropriate for most files.
 
 
 ### Data types
