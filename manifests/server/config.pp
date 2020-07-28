@@ -26,7 +26,7 @@ define openssh::server::config (
 
     include 'openssh::server'
 
-    file { "${include_dir}/${filename}.conf":
+    file { "${openssh::server::include_dir}/${filename}.conf":
         ensure  => $ensure,
         owner   => $owner,
         group   => $group,
