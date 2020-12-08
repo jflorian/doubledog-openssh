@@ -19,16 +19,12 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [1.8.0] WIP
+## [1.8.0] 2020-12-08
 ### Added
 - support for Fedora 33
 - dependency on `puppetlabs/stdlib` now allows version 6
-### Changed
-### Deprecated
 ### Removed
 - support for Fedora 30-31
-### Fixed
-### Security
 
 ## [1.7.1] 2020-07-28
 ### Fixed
