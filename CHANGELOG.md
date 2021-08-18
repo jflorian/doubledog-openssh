@@ -23,6 +23,7 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 ### Added
 - support for Fedora 34
 ### Changed
+- dependency on `puppetlabs/firewall` now allows version 3
 ### Deprecated
 ### Removed
 ### Fixed
