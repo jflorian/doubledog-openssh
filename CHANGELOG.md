@@ -19,14 +19,11 @@ Template
 
 All notable changes to this project (since v1.2.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [1.8.1] WIP
+## [1.8.1] 2021-08-18
 ### Added
 - support for Fedora 34
 ### Changed
 - dependency on `puppetlabs/firewall` now allows version 3
-### Deprecated
-### Removed
-### Fixed
 ### Security
 - `include_dir` is group- and world-readable but should be private
 
