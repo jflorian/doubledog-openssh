@@ -10,7 +10,7 @@
 # === Copyright
 #
 # This file is part of the doubledog-openssh Puppet module.
-# Copyright 2012-2020 John Florian
+# Copyright 2012-2021 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -50,7 +50,7 @@ class openssh::server (
             ;
         $include_dir:
             ensure => directory,
-            mode   => '0755',
+            mode   => '0700',
     }
 
     if $manage_firewall {
