@@ -21,6 +21,7 @@ All notable changes to this project (since v1.2.0) will be documented in this fi
 
 ## [1.8.1] WIP
 ### Added
+- support for Fedora 34
 ### Changed
 ### Deprecated
 ### Removed
